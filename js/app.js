@@ -16,7 +16,15 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x += this.speed * dt;
+
+    //bug is moving in range and come back to start position
+    if (this.x < 333) {
+        this.x += this.speed * dt;
+    }
+    else {
+        this.x = 0;
+    }
+    
 };
 
 // Draw the enemy on the screen, required method for game
