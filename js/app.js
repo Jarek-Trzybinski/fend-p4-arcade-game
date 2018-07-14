@@ -18,14 +18,15 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 
     //bug is moving in range and come back to start position
-    if (this.x < 333) {
+    if (this.x < 500) {
         this.x += this.speed * dt;
     }
     else {
-        this.x = 0;
+        this.x = -100;
     }
-    
+
 };
+
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -42,39 +43,54 @@ var Player = function(x, y) {
 
 };
 
-Player.prototype.update = function() {};
+Player.prototype.update = function() {
+    
+};
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-//przerobic na swoj
+
+
 Player.prototype.handleInput = function(allowedKeys) {
+    
     switch(allowedKeys) {
         case 'left':
-            this.x -= 101;
+            if (this.x - 101 >= 0) {
+                this.x -= 101;
+            }
             break;
-        
+            
         case 'up':
-            this.y -= 83;
+            if (this.y - 83 >= 70 ) {
+                this.y -= 83;
+            }            
             break;
         
         case 'right':
-            this.x += 101;
+            if (this.x + 101 < 505) {
+                this.x += 101;
+            }
             break;
         
         case 'down':
-            this.y += 83;
+            if (this.y + 83 <= 506 - 70) {
+                this.y += 83;
+            }
+            
     }
 };
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 
-var enemy1 = new Enemy(100, 100, 10);
-var enemy2 = new Enemy(100,200,20);
-var enemy3 = new Enemy(100, 300, 32);
+var enemy1 = new Enemy(-100, 83+70, 55);
+var enemy2 = new Enemy(-100, 70, 66);
+var enemy3 = new Enemy(-100, 83*2+70, 80);
 allEnemies = [enemy1, enemy2, enemy3];
 // Place the player object in a variable called player
-var player = new Player(10,10);
+
+// 
+var player = new Player(0, (83*4)+70);
 
 
 
