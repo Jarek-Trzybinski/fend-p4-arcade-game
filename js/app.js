@@ -23,7 +23,17 @@ Enemy.prototype.update = function(dt) {
     }
     else {
         this.x = -100;
-    }
+    };
+
+    // checking collsion betwem player and enemies
+    if (player.x <= this.x + 70 && 
+        player.x >= this.x - 70 && 
+        player.y <= this.y + 18 && 
+        player.y >= this.y -18) {
+            player.x = 101*2;
+            player.y = ((83*4)+70);
+    };
+    
 
 };
 
@@ -44,11 +54,22 @@ var Player = function(x, y) {
 };
 
 Player.prototype.update = function() {
-    
+   
 };
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
+    if (player.y < 70) {
+            player.x = 101*2;
+            player.y = ((83*4)+70);
+
+            /*
+            ctx.font = '40px Arial';
+            ctx.fillText('YOU HAVE WON!!!', 80, 280);
+            ctx.fillStyle = '#000';
+            */
+    }
 };
 
 
@@ -62,9 +83,9 @@ Player.prototype.handleInput = function(allowedKeys) {
             break;
             
         case 'up':
-            if (this.y - 83 >= 70 ) {
+            //if (this.y - 83 >= 70 ) {
                 this.y -= 83;
-            }            
+            //}            
             break;
         
         case 'right':
@@ -90,7 +111,7 @@ allEnemies = [enemy1, enemy2, enemy3];
 // Place the player object in a variable called player
 
 // 
-var player = new Player(0, (83*4)+70);
+var player = new Player(101*2, (83*4)+70);
 
 
 
