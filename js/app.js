@@ -1,3 +1,4 @@
+"use strict";
 // Enemies our player must avoid
 class Enemy {
     constructor(x,y, speed) {
@@ -54,6 +55,7 @@ class Player {
         if (player.y < 70) {
             player.x = 101*2;
             player.y = ((83*4)+70);
+            alert("YOU HAVE WON!");           
     }
     }
 
@@ -72,6 +74,7 @@ class Player {
             case 'up':
                     this.y -= 83;
                     break;
+                    
             
             case 'right':
                 if (this.x + 101 < 505) {
@@ -95,7 +98,7 @@ let enemy2 = new Enemy(-100, 70, 66);
 let enemy3 = new Enemy(-100, 83*2+70, 80);
 
 // Place all enemy objects in an array called allEnemies
-allEnemies = [enemy1, enemy2, enemy3];
+let allEnemies = [enemy1, enemy2, enemy3];
 
 // Place the player object in a variable called player
 let player = new Player(101*2, (83*4)+70);
