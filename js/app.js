@@ -19,7 +19,7 @@ class Enemy {
 
         //bug is moving in range and come back to start position
         if (this.x < 500) {
-        this.x += this.speed * dt;
+            this.x += this.speed * dt;
         }
         else {
             this.x = -100;
@@ -29,10 +29,11 @@ class Enemy {
         if (player.x <= this.x + 70 && 
             player.x >= this.x - 70 && 
             player.y <= this.y + 18 && 
-            player.y >= this.y -18) {
-                player.x = 101*2;
-                player.y = ((83*4)+70);
-        }
+            player.y >= this.y -18) 
+                {
+                    player.x = 101*2;
+                    player.y = ((83*4)+70);
+                }
     }
 
     render() {
@@ -52,9 +53,9 @@ class Player {
     }
 
     update() {
-        if (player.y < 70) {
-            player.x = 101*2;
-            player.y = ((83*4)+70);
+        if (this.y < 70) {
+            this.x = 101*2;
+            this.y = ((83*4)+70);
             alert("YOU HAVE WON!");           
     }
     }
@@ -93,12 +94,12 @@ class Player {
 
 
 // Now instantiate your objects.
-let enemy1 = new Enemy(-100, 83+70, 55);
-let enemy2 = new Enemy(-100, 70, 66);
-let enemy3 = new Enemy(-100, 83*2+70, 80);
-
 // Place all enemy objects in an array called allEnemies
-let allEnemies = [enemy1, enemy2, enemy3];
+const allEnemies = [
+    new Enemy(-100, 83+70, 55),
+    new Enemy(-100, 70, 66),
+    new Enemy(-100, 83*2+70, 80)
+];
 
 // Place the player object in a variable called player
 let player = new Player(101*2, (83*4)+70);
