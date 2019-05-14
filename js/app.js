@@ -70,14 +70,23 @@ class Player {
         this.sprite = 'images/char-boy.png';
         this.gameState = GAMESTATE.START;
     }
-
+    countdown() {
+        let timeLeft = 3;
+        let timer = setInterval(function(){
+            console.log(`${timeLeft} seconds`);
+            timeLeft -= 1;
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+            }
+        }, 1000);
+    }
+    
     update() {
         if (this.y < 70) {
             this.x = 101*2;
             this.y = ((83*4)+70);
             this.gameState = GAMESTATE.WIN;
-                     
-    }
+        }
     }
 
     render() {
@@ -179,6 +188,7 @@ class Player {
                     console.log("unpaused");
                     this.gameState = GAMESTATE.RUNNING;
                 } else if(this.gameState === GAMESTATE.START) {
+                    // to do: count down functin
                     this.gameState = GAMESTATE.RUNNING;
                 } else if (this.gameState === GAMESTATE.GAMEOVER || this.gameState === GAMESTATE.WIN) {
                     this.gameState = GAMESTATE.START;
@@ -213,3 +223,6 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+// checking if countdown function works
+player.countdown();
